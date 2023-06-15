@@ -194,7 +194,7 @@ public final class DnsResolverGroupBuilder extends AbstractDnsResolverBuilder {
                 autoRefreshTimeoutFunction = DEFAULT_AUTO_REFRESH_TIMEOUT_FUNCTION;
             }
             if (autoRefreshBackoff == null) {
-                autoRefreshBackoff = Backoff.ofDefault();
+                autoRefreshBackoff = Backoff.of();
             }
         }
         return new RefreshingAddressResolverGroup(cacheSpec(), negativeTtl(), resolvedAddressTypes,

@@ -57,7 +57,7 @@ import reactor.core.scheduler.NonBlocking;
  * <h2>Life cycle of the default {@link ClientFactory}</h2>
  * <p>
  * {@link Clients} or {@link ClientBuilder} uses the default {@link ClientFactory} returned by
- * {@link #ofDefault()}, unless you specified a {@link ClientFactory} explicitly. Calling {@link #close()}
+ * {@link #of()}, unless you specified a {@link ClientFactory} explicitly. Calling {@link #close()}
  * on the default {@link ClientFactory} will neither terminate its I/O threads nor release other related
  * resources unlike other {@link ClientFactory} to protect itself from accidental premature termination.
  * </p><p>
@@ -74,7 +74,7 @@ public interface ClientFactory extends Unwrappable, ListenableAsyncCloseable {
     /**
      * Returns the default {@link ClientFactory} implementation.
      */
-    static ClientFactory ofDefault() {
+    static ClientFactory of() {
         return DefaultClientFactory.DEFAULT;
     }
 
@@ -134,7 +134,7 @@ public interface ClientFactory extends Unwrappable, ListenableAsyncCloseable {
 
     /**
      * Disables the {@linkplain Runtime#addShutdownHook(Thread) shutdown hook} which closes
-     * {@linkplain #ofDefault() the default <code>ClientFactory</code>}. This method is useful when you need
+     * {@linkplain #of() the default <code>ClientFactory</code>}. This method is useful when you need
      * full control over the life cycle of the default {@link ClientFactory}.
      */
     static void disableShutdownHook() {

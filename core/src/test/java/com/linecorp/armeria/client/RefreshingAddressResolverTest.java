@@ -196,7 +196,7 @@ class RefreshingAddressResolverTest {
         ) {
             final EventLoop eventLoop = eventLoopExtension.get();
             final DnsResolverGroupBuilder builder = builder(server);
-            builder.autoRefreshBackoff(Backoff.ofDefault().withMaxAttempts(1));
+            builder.autoRefreshBackoff(Backoff.of().withMaxAttempts(1));
             try (RefreshingAddressResolverGroup group = builder.build(eventLoop)) {
                 final AddressResolver<InetSocketAddress> resolver = group.getResolver(eventLoop);
 

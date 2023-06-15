@@ -59,7 +59,7 @@ class RetryRuleBuilderTest {
 
         final ClientRequestContext ctx1 = ClientRequestContext.of(HttpRequest.of(HttpMethod.GET, "/"));
         ctx1.logBuilder().responseHeaders(ResponseHeaders.of(HttpStatus.BAD_REQUEST));
-        assertBackoff(rule.shouldRetry(ctx1, null)).isSameAs(Backoff.ofDefault());
+        assertBackoff(rule.shouldRetry(ctx1, null)).isSameAs(Backoff.of());
 
         final ClientRequestContext ctx2 = ClientRequestContext.of(HttpRequest.of(HttpMethod.GET, "/"));
         ctx2.logBuilder().responseHeaders(ResponseHeaders.of(HttpStatus.OK));
@@ -238,7 +238,7 @@ class RetryRuleBuilderTest {
         assertBackoff(retryRule.shouldRetry(ctx3, ex)).isSameAs(unprocessBackOff);
 
         final ClientRequestContext ctx4 = ClientRequestContext.of(HttpRequest.of(HttpMethod.GET, "/"));
-        assertBackoff(retryRule.shouldRetry(ctx4, new RuntimeException())).isSameAs(Backoff.ofDefault());
+        assertBackoff(retryRule.shouldRetry(ctx4, new RuntimeException())).isSameAs(Backoff.of());
 
         final ClientRequestContext ctx5 = ClientRequestContext.of(HttpRequest.of(HttpMethod.GET, "/"));
         ctx5.logBuilder().responseHeaders(ResponseHeaders.of(HttpStatus.CONFLICT));
@@ -307,7 +307,7 @@ class RetryRuleBuilderTest {
 
         final ClientRequestContext ctx1 = ClientRequestContext.of(HttpRequest.of(HttpMethod.HEAD, "/"));
         ctx1.logBuilder().responseHeaders(ResponseHeaders.of(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertBackoff(rule.shouldRetry(ctx1, null)).isSameAs(Backoff.ofDefault());
+        assertBackoff(rule.shouldRetry(ctx1, null)).isSameAs(Backoff.of());
 
         final ClientRequestContext ctx2 = ClientRequestContext.of(HttpRequest.of(HttpMethod.GET, "/"));
         ctx2.logBuilder().responseHeaders(ResponseHeaders.of(HttpStatus.INTERNAL_SERVER_ERROR));
@@ -365,7 +365,7 @@ class RetryRuleBuilderTest {
                                         .orElse(RetryRule.onException());
 
         final ClientRequestContext ctx1 = ClientRequestContext.of(HttpRequest.of(HttpMethod.GET, "/"));
-        assertBackoff(rule.shouldRetry(ctx1, new RuntimeException())).isSameAs(Backoff.ofDefault());
+        assertBackoff(rule.shouldRetry(ctx1, new RuntimeException())).isSameAs(Backoff.of());
 
         final ClientRequestContext ctx2 = ClientRequestContext.of(HttpRequest.of(HttpMethod.POST, "/"));
         assertBackoff(rule.shouldRetry(ctx2, new RuntimeException())).isNull();

@@ -66,7 +66,7 @@ class PrometheusExpositionServiceTest {
         protected void configure(ServerBuilder sb) throws Exception {
             sb.route().path("/api").defaultServiceName("Hello").build((ctx, req) -> HttpResponse.of(200));
             sb.meterRegistry(registry)
-              .decorator(MetricCollectingService.newDecorator(MeterIdPrefixFunction.ofDefault("foo")))
+              .decorator(MetricCollectingService.newDecorator(MeterIdPrefixFunction.of("foo")))
               .service("/disabled", PrometheusExpositionService.of(registry.getPrometheusRegistry()))
               .service("/enabled",
                        PrometheusExpositionService.builder(registry.getPrometheusRegistry())

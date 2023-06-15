@@ -50,7 +50,7 @@ import io.netty.util.AttributeKey;
  *         "/service",
  *         THttpService.of(handler)
  *                     .decorate(MetricCollectingService.newDecorator(
- *                             MeterIdPrefixFunction.ofDefault("myService"))));
+ *                             MeterIdPrefixFunction.of("myService"))));
  * }
  * </pre>
  *

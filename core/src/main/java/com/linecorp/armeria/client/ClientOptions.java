@@ -54,7 +54,7 @@ public final class ClientOptions
      * The {@link ClientFactory} used for creating a client.
      */
     public static final ClientOption<ClientFactory> FACTORY =
-            ClientOption.define("FACTORY", ClientFactory.ofDefault());
+            ClientOption.define("FACTORY", ClientFactory.of());
 
     /**
      * The timeout of a socket write.
@@ -129,7 +129,7 @@ public final class ClientOptions
      * The {@link SuccessFunction} that determines if the request is successful or not.
      */
     public static final ClientOption<SuccessFunction> SUCCESS_FUNCTION =
-            ClientOption.define("SUCCESS_FUNCTION", SuccessFunction.ofDefault());
+            ClientOption.define("SUCCESS_FUNCTION", SuccessFunction.of());
 
     /**
      * A {@link Function} that remaps a target {@link Endpoint} into an {@link EndpointGroup}.

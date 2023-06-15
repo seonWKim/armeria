@@ -28,7 +28,7 @@ package com.linecorp.armeria.client;
 public final class DefaultClientFactoryShutdownTest {
 
     public static void main(String[] args) {
-        final DefaultClientFactory defaultClientFactory = (DefaultClientFactory) ClientFactory.ofDefault();
+        final DefaultClientFactory defaultClientFactory = (DefaultClientFactory) ClientFactory.of();
         defaultClientFactory.closeOnJvmShutdown().thenRun(() -> {
             System.out.println("After ClientFactory stopped");
         });

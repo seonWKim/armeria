@@ -94,7 +94,7 @@ class DefaultDnsResolverTest {
                                     .nameServerProvider(
                                             name -> DnsServerAddresses.sequential(dnsServer.addr()).stream())
                                     .build(),
-                            DnsCache.ofDefault(), eventLoop, ImmutableList.of(), 1,
+                            DnsCache.of(), eventLoop, ImmutableList.of(), 1,
                             1, HostsFileEntriesResolver.DEFAULT);
 
             final DnsQuestionContext ctx = new DnsQuestionContext(eventLoop, 1);

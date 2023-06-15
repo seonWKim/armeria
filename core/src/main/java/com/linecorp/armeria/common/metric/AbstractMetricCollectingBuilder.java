@@ -66,7 +66,7 @@ public abstract class AbstractMetricCollectingBuilder {
      * <p>Example:
      * <pre>{@code
      *     MetricCollectingService
-     *         .builder(MeterIdPrefixFunction.ofDefault("hello"))
+     *         .builder(MeterIdPrefixFunction.of("hello"))
      *         .successFunction((context, log) -> {
      *             final int statusCode = log.responseHeaders().status().code();
      *             return (statusCode >= 200 && statusCode < 400) || statusCode == 404;

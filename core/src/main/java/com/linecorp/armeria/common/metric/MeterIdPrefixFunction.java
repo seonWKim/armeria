@@ -59,7 +59,7 @@ public interface MeterIdPrefixFunction {
      *   </ul></li>
      * </ul>
      */
-    static MeterIdPrefixFunction ofDefault(String name) {
+    static MeterIdPrefixFunction of(String name) {
         return DefaultMeterIdPrefixFunction.of(name);
     }
 

@@ -85,7 +85,7 @@ class HttpClientNoKeepAliveTest {
             final WebClient client = WebClient.builder("h1c://127.0.0.1:" + ss.getLocalPort())
                                               .factory(factory)
                                               .decorator(MetricCollectingClient.newDecorator(
-                                                      MeterIdPrefixFunction.ofDefault("client")))
+                                                      MeterIdPrefixFunction.of("client")))
                                               .build();
             client.get("/").aggregate();
 

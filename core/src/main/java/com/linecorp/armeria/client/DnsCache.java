@@ -38,7 +38,7 @@ public interface DnsCache {
     /**
      * Returns the default DNS cache.
      */
-    static DnsCache ofDefault() {
+    static DnsCache of() {
         return DnsCacheBuilder.DEFAULT_CACHE;
     }
 

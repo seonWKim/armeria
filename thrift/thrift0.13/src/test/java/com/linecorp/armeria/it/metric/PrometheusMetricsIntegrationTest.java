@@ -343,14 +343,14 @@ public class PrometheusMetricsIntegrationTest {
 
         @Override
         public MeterIdPrefix completeRequestPrefix(MeterRegistry registry, RequestLog log) {
-            return MeterIdPrefixFunction.ofDefault(name)
+            return MeterIdPrefixFunction.of(name)
                                         .withTags("handler", serviceName)
                                         .completeRequestPrefix(registry, log);
         }
 
         @Override
         public MeterIdPrefix activeRequestPrefix(MeterRegistry registry, RequestOnlyLog log) {
-            return MeterIdPrefixFunction.ofDefault(name)
+            return MeterIdPrefixFunction.of(name)
                                         .withTags("handler", serviceName)
                                         .activeRequestPrefix(registry, log);
         }

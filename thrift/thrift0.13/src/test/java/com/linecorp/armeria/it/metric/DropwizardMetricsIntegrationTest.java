@@ -59,7 +59,7 @@ class DropwizardMetricsIntegrationTest {
                 }
                 throw new IllegalArgumentException("bad argument");
             }).decorate(MetricCollectingService.newDecorator(
-                    MeterIdPrefixFunction.ofDefault("armeria.server.hello.service"))));
+                    MeterIdPrefixFunction.of("armeria.server.hello.service"))));
         }
     };
 
@@ -158,7 +158,7 @@ class DropwizardMetricsIntegrationTest {
                                           .path("/helloservice")
                                           .factory(clientFactory)
                                           .rpcDecorator(MetricCollectingRpcClient.newDecorator(
-                                                  MeterIdPrefixFunction.ofDefault(
+                                                  MeterIdPrefixFunction.of(
                                                           "armeria.client.hello.service")))
                                           .build(Iface.class);
         try {

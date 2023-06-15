@@ -998,7 +998,7 @@ public final class Flags {
 
     /**
      * Returns the {@linkplain Backoff#of(String) Backoff specification string} of the default {@link Backoff}
-     * returned by {@link Backoff#ofDefault()}. Note that this flag has no effect if a user specified the
+     * returned by {@link Backoff#of()}. Note that this flag has no effect if a user specified the
      * {@link Backoff} explicitly.
      *
      * <p>The default value of this flag is {@value DefaultFlagsProvider#DEFAULT_BACKOFF_SPEC}. Specify the

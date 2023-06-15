@@ -95,7 +95,7 @@ public abstract class AbstractArmeriaAutoConfiguration {
                                            armeriaServerBuilderConsumers.orElse(ImmutableList.of()),
                                            meterRegistry.orElse(Flags.meterRegistry()),
                                            meterIdPrefixFunction.orElse(
-                                                   MeterIdPrefixFunction.ofDefault("armeria.server")),
+                                                   MeterIdPrefixFunction.of("armeria.server")),
                                            metricCollectingServiceConfigurators.orElse(ImmutableList.of()),
                                            dependencyInjectors.orElse(ImmutableList.of()),
                                            beanFactory);

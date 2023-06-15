@@ -128,7 +128,7 @@ public class AbstractClientOptionsBuilder {
 
     /**
      * Sets the {@link ClientFactory} used for creating a client.
-     * The default is {@link ClientFactory#ofDefault()}.
+     * The default is {@link ClientFactory#of()}.
      */
     public AbstractClientOptionsBuilder factory(ClientFactory factory) {
         return option(ClientOptions.FACTORY, requireNonNull(factory, "factory"));
@@ -213,7 +213,7 @@ public class AbstractClientOptionsBuilder {
 
     /**
      * Sets a {@link SuccessFunction} that determines whether a request was handled successfully or not.
-     * If unspecified, {@link SuccessFunction#ofDefault()} is used.
+     * If unspecified, {@link SuccessFunction#of()} is used.
      */
     @UnstableApi
     public AbstractClientOptionsBuilder successFunction(SuccessFunction successFunction) {

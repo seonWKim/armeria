@@ -33,7 +33,7 @@ public interface CircuitBreakerMapping extends ClientCircuitBreakerGenerator<Cir
     /**
      * Returns the default {@link CircuitBreakerMapping}.
      */
-    static CircuitBreakerMapping ofDefault() {
+    static CircuitBreakerMapping of() {
         return KeyedCircuitBreakerMapping.hostMapping;
     }
 

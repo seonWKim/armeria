@@ -56,7 +56,7 @@ public final class RequestContextCurrentTraceContext extends CurrentTraceContext
      *
      * @see Tracing.Builder#currentTraceContext(CurrentTraceContext)
      */
-    public static RequestContextCurrentTraceContext ofDefault() {
+    public static RequestContextCurrentTraceContext of() {
         return DEFAULT;
     }
 

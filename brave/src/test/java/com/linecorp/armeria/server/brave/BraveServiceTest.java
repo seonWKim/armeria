@@ -78,7 +78,7 @@ class BraveServiceTest {
         assertThatThrownBy(() -> BraveService.newDecorator(HttpTracing.create(Tracing.newBuilder().build())))
                 .isInstanceOf(IllegalStateException.class).hasMessage(
                 "Tracing.currentTraceContext is not a RequestContextCurrentTraceContext scope. Please " +
-                "call Tracing.Builder.currentTraceContext(RequestContextCurrentTraceContext.ofDefault())."
+                "call Tracing.Builder.currentTraceContext(RequestContextCurrentTraceContext.of())."
         );
     }
 
@@ -87,7 +87,7 @@ class BraveServiceTest {
         BraveService.newDecorator(
                 HttpTracing.create(
                         Tracing.newBuilder()
-                               .currentTraceContext(RequestContextCurrentTraceContext.ofDefault())
+                               .currentTraceContext(RequestContextCurrentTraceContext.of())
                                .build()));
     }
 
@@ -95,7 +95,7 @@ class BraveServiceTest {
     void shouldSubmitSpanWhenRequestIsSampled() throws Exception {
         final SpanCollector collector = new SpanCollector();
         final RequestLog requestLog = testServiceInvocation(collector,
-                                                            RequestContextCurrentTraceContext.ofDefault(),
+                                                            RequestContextCurrentTraceContext.of(),
                                                             1.0f);
 
         // check span name
@@ -125,7 +125,7 @@ class BraveServiceTest {
     @Test
     void shouldNotSubmitSpanWhenRequestIsNotSampled() throws Exception {
         final SpanCollector collector = new SpanCollector();
-        testServiceInvocation(collector, RequestContextCurrentTraceContext.ofDefault(), 0.0f);
+        testServiceInvocation(collector, RequestContextCurrentTraceContext.of(), 0.0f);
 
         // don't submit any spans
         assertThat(collector.spans().poll(1, TimeUnit.SECONDS)).isNull();
@@ -163,7 +163,7 @@ class BraveServiceTest {
         final Tracing tracing = Tracing.newBuilder()
                                        .localServiceName(TEST_SERVICE)
                                        .addSpanHandler(collector)
-                                       .currentTraceContext(RequestContextCurrentTraceContext.ofDefault())
+                                       .currentTraceContext(RequestContextCurrentTraceContext.of())
                                        .sampler(Sampler.ALWAYS_SAMPLE)
                                        .build();
 

@@ -49,7 +49,7 @@ public final class TraceContextPropagation {
      * Tracing threadLocalTracing = ...;
      * Tracing requestContextTracing =
      *     Tracing.newBuilder()
-     *            .currentTraceContext(RequestContextCurrentTraceContext.ofDefault())
+     *            .currentTraceContext(RequestContextCurrentTraceContext.of())
      *            .build();
      *
      * Clients.builder(...)

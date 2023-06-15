@@ -42,7 +42,7 @@ import com.linecorp.armeria.common.logging.RequestLog;
  *                                MediaType.PLAIN_TEXT, "Oops, something went wrong.");
  *     }
  *
- *     // Return null to let ServerErrorHandler.ofDefault() handle the exception.
+ *     // Return null to let ServerErrorHandler.of() handle the exception.
  *     return null;
  * }
  *
@@ -88,7 +88,7 @@ public interface ServerErrorHandler {
      *   ...
      * }</pre>
      */
-    static ServerErrorHandler ofDefault() {
+    static ServerErrorHandler of() {
         return DefaultServerErrorHandler.INSTANCE;
     }
 
@@ -186,7 +186,7 @@ public interface ServerErrorHandler {
      * assert handler.onServiceException(ctx, new ThirdException()) == null;
      *
      * // The default handler never returns null.
-     * ServerErrorHandler nonNullHandler = combinedHandler.orElse(ServerErrorHandler.ofDefault());
+     * ServerErrorHandler nonNullHandler = combinedHandler.orElse(ServerErrorHandler.of());
      * assert handler.onServiceException(ctx, new FirstException()) != null;
      * assert handler.onServiceException(ctx, new SecondException()) != null;
      * assert handler.onServiceException(ctx, new ThirdException()) != null;

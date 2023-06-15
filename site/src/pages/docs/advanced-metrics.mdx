@@ -27,7 +27,7 @@ Server.builder()
       .http(new InetSocketAddress(address, port))
       .service(new MyHttpService())
       .decorator(MetricCollectingService.newDecorator(
-              MeterIdPrefixFunction.ofDefault("http.service")))
+              MeterIdPrefixFunction.of("http.service")))
       .build();
 ```
 
@@ -78,7 +78,7 @@ import com.linecorp.armeria.client.metric.MetricCollectingClient;
 // Decorate a WebClient with MetricCollectingClient
 WebClient.builder(httpUrl)
          .decorator(MetricCollectingClient.newDecorator(
-                 MeterIdPrefixFunction.ofDefault("http.client")))
+                 MeterIdPrefixFunction.of("http.client")))
          .build();
 
 // Decorate a gRPC client with MetricCollectingClient

@@ -57,7 +57,7 @@ import io.netty.resolver.dns.NoopDnsCnameCache;
 @UnstableApi
 public abstract class AbstractDnsResolverBuilder {
 
-    private DnsCache dnsCache = DnsCache.ofDefault();
+    private DnsCache dnsCache = DnsCache.of();
     private String cacheSpec = Flags.dnsCacheSpec();
     private int minTtl = 1;
     private int maxTtl = Integer.MAX_VALUE;
@@ -456,7 +456,7 @@ public abstract class AbstractDnsResolverBuilder {
      */
     @UnstableApi
     protected final DnsCache maybeCreateDnsCache() {
-        if (needsToCreateDnsCache && dnsCache != DnsCache.ofDefault()) {
+        if (needsToCreateDnsCache && dnsCache != DnsCache.of()) {
             throw new IllegalStateException(
                     "Cannot set dnsCache() with cacheSpec(), ttl(), or negativeTtl().");
         }

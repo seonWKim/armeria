@@ -408,7 +408,7 @@ public final class DocService extends SimpleDecoratingHttpService {
                 Executor fileReadExecutor, String path, Clock clock,
                 @Nullable String contentEncoding, HttpHeaders additionalHeaders) {
             return get(fileReadExecutor, path, clock, contentEncoding, additionalHeaders,
-                       MediaTypeResolver.ofDefault());
+                       MediaTypeResolver.of());
         }
 
         @Override
@@ -436,7 +436,7 @@ public final class DocService extends SimpleDecoratingHttpService {
             headers.set(HttpHeaderNames.CACHE_CONTROL, ServerCacheControl.REVALIDATED.asHeaderValue());
 
             return staticFiles.get(fileReadExecutor, path, clock, contentEncoding,
-                                   headers.build(), MediaTypeResolver.ofDefault());
+                                   headers.build(), MediaTypeResolver.of());
         }
 
         @Override

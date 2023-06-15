@@ -50,7 +50,7 @@ import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 
 class RetryingClientWithMetricsTest {
 
-    private static final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.ofDefault("foo");
+    private static final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.of("foo");
 
     @RegisterExtension
     final ServerExtension server = new ServerExtension() {
@@ -107,7 +107,7 @@ class RetryingClientWithMetricsTest {
                     if ("hello".equals(msg.contentUtf8())) {
                         return RetryDecision.noRetry();
                     }
-                    return RetryDecision.retry(Backoff.ofDefault());
+                    return RetryDecision.retry(Backoff.of());
                 });
         final WebClient client = WebClient.builder(server.httpUri())
                                           .factory(clientFactory)
@@ -204,7 +204,7 @@ class RetryingClientWithMetricsTest {
                 WebClient.builder(SessionProtocol.HTTP, group)
                          .factory(clientFactory)
                          .decorator(RetryingClient.newDecorator(RetryRule.onUnprocessed()))
-                         .decorator(MetricCollectingClient.newDecorator(MeterIdPrefixFunction.ofDefault("foo")))
+                         .decorator(MetricCollectingClient.newDecorator(MeterIdPrefixFunction.of("foo")))
                          .build();
 
         assertThat(client.get("/ok").aggregate().join().status()).isEqualTo(HttpStatus.OK);

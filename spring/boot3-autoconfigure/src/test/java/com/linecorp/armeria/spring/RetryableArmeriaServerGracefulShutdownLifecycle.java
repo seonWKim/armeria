@@ -46,7 +46,7 @@ public final class RetryableArmeriaServerGracefulShutdownLifecycle implements Ar
     public RetryableArmeriaServerGracefulShutdownLifecycle(Server server, int maxAttempts) {
         delegate = new ArmeriaServerGracefulShutdownLifecycle(server);
         this.maxAttempts = maxAttempts;
-        backoff = Backoff.ofDefault();
+        backoff = Backoff.of();
     }
 
     @Override

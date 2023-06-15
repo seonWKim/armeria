@@ -28,13 +28,13 @@ public final class RetryDecision {
 
     private static final RetryDecision NO_RETRY = new RetryDecision(null);
     private static final RetryDecision NEXT = new RetryDecision(null);
-    static final RetryDecision DEFAULT = new RetryDecision(Backoff.ofDefault());
+    static final RetryDecision DEFAULT = new RetryDecision(Backoff.of());
 
     /**
      * Returns a {@link RetryDecision} that retries with the specified {@link Backoff}.
      */
     public static RetryDecision retry(Backoff backoff) {
-        if (backoff == Backoff.ofDefault()) {
+        if (backoff == Backoff.of()) {
             return DEFAULT;
         }
         return new RetryDecision(requireNonNull(backoff, "backoff"));

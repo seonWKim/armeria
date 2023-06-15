@@ -65,7 +65,7 @@ class Http1HeaderNamingTest {
                       .of(ResponseHeaders.of(HttpStatus.OK,
                                              HttpHeaderNames.AUTHORIZATION, "Bearer foo",
                                              HttpHeaderNames.X_FORWARDED_FOR, "bar")))
-              .http1HeaderNaming(Http1HeaderNaming.ofDefault());
+              .http1HeaderNaming(Http1HeaderNaming.of());
         }
     };
 
@@ -80,7 +80,7 @@ class Http1HeaderNamingTest {
                                              .http1HeaderNaming(Http1HeaderNaming.traditional())
                                              .build();
             } else {
-                clientFactory = ClientFactory.ofDefault();
+                clientFactory = ClientFactory.of();
             }
 
             final WebClient client = WebClient.builder("h1c://127.0.0.1:" + port)

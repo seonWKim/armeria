@@ -90,7 +90,7 @@ class MeterIdPrefixFunctionTest {
     @Test
     void defaultApply() {
         final MeterRegistry registry = NoopMeterRegistry.get();
-        final MeterIdPrefixFunction f = MeterIdPrefixFunction.ofDefault("foo");
+        final MeterIdPrefixFunction f = MeterIdPrefixFunction.of("foo");
 
         ServiceRequestContext ctx;
         MeterIdPrefix res;
@@ -142,7 +142,7 @@ class MeterIdPrefixFunctionTest {
     @Test
     void defaultActiveRequestPrefix() {
         final MeterRegistry registry = NoopMeterRegistry.get();
-        final MeterIdPrefixFunction f = MeterIdPrefixFunction.ofDefault("foo");
+        final MeterIdPrefixFunction f = MeterIdPrefixFunction.of("foo");
 
         ServiceRequestContext ctx;
         MeterIdPrefix res;

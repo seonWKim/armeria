@@ -59,7 +59,7 @@ import com.linecorp.armeria.common.ResponseHeaders;
 import com.linecorp.armeria.common.logging.RequestLogProperty;
 
 new RetryRule() {
-    Backoff backoff = Backoff.ofDefault();
+    Backoff backoff = Backoff.of();
 
     @Override
     public CompletionStage<RetryDecision> shouldRetry(ClientRequestContext ctx,
@@ -115,7 +115,7 @@ You can return a different <type://Backoff> according to the response status.
 ```java
 import com.linecorp.armeria.common.HttpStatusClass;
 
-Backoff backoffOnServerErrorOrTimeout = Backoff.ofDefault();
+Backoff backoffOnServerErrorOrTimeout = Backoff.of();
 Backoff backoffOnConflict = Backoff.fixed(100);
 RetryRule.builder()
          .onException(ex -> ex instanceof ResponseTimeoutException ||
@@ -193,7 +193,7 @@ implementations which produce the following delays out of the box:
 - Random delay, created with <type://Backoff#random(long,long)>
 - Exponential delay which is multiplied on each attempt, created with <type://Backoff#exponential(long,long)>
 
-Armeria provides <type://Backoff#ofDefault()> that you might use by default. It is exactly the same as:
+Armeria provides <type://Backoff#of()> that you might use by default. It is exactly the same as:
 
 ```java
 Backoff.exponential(200   /* minDelayMillis */,

@@ -27,7 +27,7 @@ Then, you need to create the `HttpTracing`:
     Reporter<Span> myReporter = ...
     Tracing tracing = Tracing.newBuilder()
                              .localServiceName("myService")
-                             .currentTraceContext(RequestContextCurrentTraceContext.ofDefault())
+                             .currentTraceContext(RequestContextCurrentTraceContext.of())
                              .spanReporter(myReporter)
                              .build();
     HttpTracing httpTracing = HttpTracing.create(tracing);

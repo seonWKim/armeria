@@ -42,7 +42,7 @@ public abstract class AbstractCircuitBreakerClientBuilder<I extends Request, O e
     @Nullable
     private final CircuitBreakerRuleWithContent<O> ruleWithContent;
     private CircuitBreakerClientHandler handler =
-            CircuitBreakerClientHandler.of(CircuitBreakerMapping.ofDefault());
+            CircuitBreakerClientHandler.of(CircuitBreakerMapping.of());
     @Nullable
     private BiFunction<? super ClientRequestContext, ? super I, ? extends O> fallback;
 
@@ -80,7 +80,7 @@ public abstract class AbstractCircuitBreakerClientBuilder<I extends Request, O e
     }
 
     /**
-     * Sets the {@link CircuitBreakerMapping}. If unspecified, {@link CircuitBreakerMapping#ofDefault()}
+     * Sets the {@link CircuitBreakerMapping}. If unspecified, {@link CircuitBreakerMapping#of()}
      * will be used. Note that the {@link CircuitBreakerClientHandler} set by calling
      * {@link #handler(CircuitBreakerClientHandler)} will be overwritten by calling this method.
      *

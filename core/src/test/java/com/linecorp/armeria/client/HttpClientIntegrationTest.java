@@ -360,7 +360,7 @@ class HttpClientIntegrationTest {
         }
     };
 
-    private static final ClientFactory clientFactory = ClientFactory.ofDefault();
+    private static final ClientFactory clientFactory = ClientFactory.of();
 
     @BeforeEach
     void clearError() {

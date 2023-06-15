@@ -29,7 +29,7 @@ public interface Http1HeaderNaming {
     /**
      * Returns the default {@link Http1HeaderNaming}.
      */
-    static Http1HeaderNaming ofDefault() {
+    static Http1HeaderNaming of() {
         return AsciiString::toString;
     }
 

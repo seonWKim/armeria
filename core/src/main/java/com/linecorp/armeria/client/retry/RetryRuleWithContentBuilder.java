@@ -56,11 +56,11 @@ public final class RetryRuleWithContentBuilder<T extends Response> extends Abstr
     }
 
     /**
-     * Sets the {@linkplain Backoff#ofDefault() default backoff} and
+     * Sets the {@linkplain Backoff#of() default backoff} and
      * returns a newly created {@link RetryRuleWithContent}.
      */
     public RetryRuleWithContent<T> thenBackoff() {
-        return thenBackoff(Backoff.ofDefault());
+        return thenBackoff(Backoff.of());
     }
 
     /**

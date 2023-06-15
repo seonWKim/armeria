@@ -84,7 +84,7 @@ class BraveClientTest {
     void newDecorator_shouldWorkWhenRequestContextCurrentTraceContextConfigured() {
         BraveClient.newDecorator(
                 HttpTracing.create(
-                        Tracing.newBuilder().currentTraceContext(RequestContextCurrentTraceContext.ofDefault())
+                        Tracing.newBuilder().currentTraceContext(RequestContextCurrentTraceContext.of())
                                .build()));
     }
 
@@ -207,7 +207,7 @@ class BraveClientTest {
         final SpanCollector collector = new SpanCollector();
         final Tracing tracing = Tracing.newBuilder()
                                        .addSpanHandler(collector)
-                                       .currentTraceContext(RequestContextCurrentTraceContext.ofDefault())
+                                       .currentTraceContext(RequestContextCurrentTraceContext.of())
                                        .sampler(Sampler.ALWAYS_SAMPLE)
                                        .build();
         final BlockingWebClient blockingWebClient =

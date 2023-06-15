@@ -36,7 +36,7 @@ import com.linecorp.armeria.common.logging.RequestLog;
  *         return HttpResponse.of(HttpStatus.BAD_REQUEST);
  *     }
  *
- *     // Return null to let ServerErrorHandler.ofDefault() handle the exception.
+ *     // Return null to let ServerErrorHandler.of() handle the exception.
  *     return null;
  * }
  *
@@ -134,7 +134,7 @@ public interface ServiceErrorHandler {
      * assert combinedHandler.onServiceException(ctx, new ThirdException()) == null;
      *
      * // The default handler never returns null.
-     * ServiceErrorHandler nonNullHandler = combinedHandler.orElse(ServiceErrorHandler.ofDefault());
+     * ServiceErrorHandler nonNullHandler = combinedHandler.orElse(ServiceErrorHandler.of());
      * assert nonNullHandler.onServiceException(ctx, new FirstException()) != null;
      * assert nonNullHandler.onServiceException(ctx, new SecondException()) != null;
      * assert nonNullHandler.onServiceException(ctx, new ThirdException()) != null;

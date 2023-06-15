@@ -49,7 +49,7 @@ class RequestContextCurrentTraceContextTest {
     EventLoop eventLoop;
 
     private static final CurrentTraceContext currentTraceContext =
-            RequestContextCurrentTraceContext.ofDefault();
+            RequestContextCurrentTraceContext.of();
     private static final TraceContext traceContext = TraceContext.newBuilder().traceId(1).spanId(1).build();
 
     @BeforeEach

@@ -48,10 +48,10 @@ public final class RetryRuleBuilder extends AbstractRuleBuilder {
     }
 
     /**
-     * Sets the {@linkplain Backoff#ofDefault() default backoff} and returns a newly created {@link RetryRule}.
+     * Sets the {@linkplain Backoff#of() default backoff} and returns a newly created {@link RetryRule}.
      */
     public RetryRule thenBackoff() {
-        return thenBackoff(Backoff.ofDefault());
+        return thenBackoff(Backoff.of());
     }
 
     /**

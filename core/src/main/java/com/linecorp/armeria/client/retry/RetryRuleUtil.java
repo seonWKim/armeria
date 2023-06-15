@@ -31,7 +31,7 @@ final class RetryRuleUtil {
     static final CompletableFuture<RetryDecision> NEXT_DECISION =
             UnmodifiableFuture.completedFuture(RetryDecision.next());
     static final CompletableFuture<RetryDecision> DEFAULT_DECISION =
-            UnmodifiableFuture.completedFuture(RetryDecision.retry(Backoff.ofDefault()));
+            UnmodifiableFuture.completedFuture(RetryDecision.retry(Backoff.of()));
 
     static <T extends Response> RetryRule fromRetryRuleWithContent(RetryRuleWithContent<T> retryRule) {
         return new RetryRule() {

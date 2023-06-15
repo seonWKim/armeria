@@ -58,7 +58,7 @@ class RetryableArmeriaReactiveWebServerFactory extends ArmeriaReactiveWebServerF
         RetryableWebServer(WebServer delegate, int maxAttempts) {
             this.delegate = delegate;
             this.maxAttempts = maxAttempts;
-            backoff = Backoff.ofDefault();
+            backoff = Backoff.of();
         }
 
         @Override

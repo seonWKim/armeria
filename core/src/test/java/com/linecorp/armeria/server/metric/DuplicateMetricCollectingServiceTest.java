@@ -59,7 +59,7 @@ class DuplicateMetricCollectingServiceTest {
             sb.route()
               .get("/foo/bar")
               .decorator(MetricCollectingService.newDecorator(
-                      MeterIdPrefixFunction.ofDefault("bar.metrics")))
+                      MeterIdPrefixFunction.of("bar.metrics")))
               .decorator(LoggingService.newDecorator())
               .defaultServiceName("BarService")
               .build((ctx, req) -> HttpResponse.of("BarService"));
@@ -71,10 +71,10 @@ class DuplicateMetricCollectingServiceTest {
 
             sb.decoratorUnder("/foo",
                               MetricCollectingService.newDecorator(
-                                      MeterIdPrefixFunction.ofDefault("foo.metrics")));
+                                      MeterIdPrefixFunction.of("foo.metrics")));
             sb.decoratorUnder("/foo", LoggingService.newDecorator());
             sb.decorator(
-                    MetricCollectingService.newDecorator(MeterIdPrefixFunction.ofDefault("global.metrics")));
+                    MetricCollectingService.newDecorator(MeterIdPrefixFunction.of("global.metrics")));
         }
     };
 
@@ -87,11 +87,11 @@ class DuplicateMetricCollectingServiceTest {
             sb.route()
               .get("/foo")
               .decorator(MetricCollectingService.newDecorator(
-                      MeterIdPrefixFunction.ofDefault("foo.metrics")))
+                      MeterIdPrefixFunction.of("foo.metrics")))
               .decorator(MetricCollectingService.newDecorator(
-                      MeterIdPrefixFunction.ofDefault("bar.metrics")))
+                      MeterIdPrefixFunction.of("bar.metrics")))
               .decorator(MetricCollectingService.newDecorator(
-                      MeterIdPrefixFunction.ofDefault("baz.metrics")))
+                      MeterIdPrefixFunction.of("baz.metrics")))
               .defaultServiceName("FooService")
               .build((ctx, req) -> HttpResponse.of("FooService"));
         }

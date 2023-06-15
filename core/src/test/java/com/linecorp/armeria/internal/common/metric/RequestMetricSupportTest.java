@@ -287,9 +287,9 @@ class RequestMetricSupportTest {
                                     .connectionTimings(newConnectionTimings())
                                     .build();
 
-        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.ofDefault("foo");
+        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.of("foo");
         RequestMetricSupport.setup(ctx, REQUEST_METRICS_SET, meterIdPrefixFunction, false,
-                                   SuccessFunction.ofDefault());
+                                   SuccessFunction.of());
         return ctx;
     }
 
@@ -319,9 +319,9 @@ class RequestMetricSupportTest {
                                      .build();
         final String serviceTag = "service=" + ctx.config().service().getClass().getName();
 
-        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.ofDefault("foo");
+        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.of("foo");
         RequestMetricSupport.setup(ctx, REQUEST_METRICS_SET, meterIdPrefixFunction, true,
-                                   SuccessFunction.ofDefault());
+                                   SuccessFunction.of());
 
         ctx.logBuilder().requestFirstBytesTransferred();
         ctx.logBuilder().responseHeaders(ResponseHeaders.of(503)); // 503 when request timed out
@@ -357,9 +357,9 @@ class RequestMetricSupportTest {
                                     .endpoint(Endpoint.of("example.com", 8080))
                                     .build();
 
-        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.ofDefault("bar");
+        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.of("bar");
         RequestMetricSupport.setup(ctx, REQUEST_METRICS_SET, meterIdPrefixFunction, false,
-                                   SuccessFunction.ofDefault());
+                                   SuccessFunction.of());
 
         ctx.logBuilder().name("BarService", "baz");
 
@@ -377,8 +377,8 @@ class RequestMetricSupportTest {
         final String serviceTag = "service=" + sctx.config().service().getClass().getName();
 
         RequestMetricSupport.setup(sctx, REQUEST_METRICS_SET,
-                                   MeterIdPrefixFunction.ofDefault("foo"), true,
-                                   SuccessFunction.ofDefault());
+                                   MeterIdPrefixFunction.of("foo"), true,
+                                   SuccessFunction.of());
         sctx.logBuilder().endRequest();
         try (SafeCloseable ignored = sctx.push()) {
             final ClientRequestContext cctx =
@@ -387,8 +387,8 @@ class RequestMetricSupportTest {
                                         .endpoint(Endpoint.of("example.com", 8080))
                                         .build();
             RequestMetricSupport.setup(cctx, AttributeKey.valueOf("differentKey"),
-                                       MeterIdPrefixFunction.ofDefault("bar"), false,
-                                       SuccessFunction.ofDefault());
+                                       MeterIdPrefixFunction.of("bar"), false,
+                                       SuccessFunction.of());
             cctx.logBuilder().endRequest();
             cctx.logBuilder().responseHeaders(ResponseHeaders.of(200));
             cctx.logBuilder().endResponse();
@@ -438,7 +438,7 @@ class RequestMetricSupportTest {
                                     .connectionTimings(newConnectionTimings())
                                     .build();
 
-        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.ofDefault("foo");
+        final MeterIdPrefixFunction meterIdPrefixFunction = MeterIdPrefixFunction.of("foo");
         final SuccessFunction successFunction = (context, log) -> {
             final int statusCode = log.responseHeaders().status().code();
             return (statusCode >= 200 && statusCode < 400) || statusCode == 409;

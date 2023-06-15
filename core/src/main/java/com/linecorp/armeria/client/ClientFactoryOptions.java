@@ -241,7 +241,7 @@ public final class ClientFactoryOptions
      * another HTTP/1 header name.
      */
     public static final ClientFactoryOption<Http1HeaderNaming> HTTP1_HEADER_NAMING =
-            ClientFactoryOption.define("HTTP1_HEADER_NAMING", Http1HeaderNaming.ofDefault());
+            ClientFactoryOption.define("HTTP1_HEADER_NAMING", Http1HeaderNaming.of());
 
     /**
      * The {@link ChannelOption}s of the sockets created by the {@link ClientFactory}.

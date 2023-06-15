@@ -49,13 +49,13 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with
-     * the {@linkplain Backoff#ofDefault() default backoff} if the specified {@code retryFunction} completes
+     * the {@linkplain Backoff#of() default backoff} if the specified {@code retryFunction} completes
      * with {@code true}.
      */
     static <T extends Response> RetryRuleWithContent<T> onResponse(
             BiFunction<? super ClientRequestContext, ? super T,
                     ? extends CompletionStage<Boolean>> retryFunction) {
-        return onResponse(retryFunction, Backoff.ofDefault());
+        return onResponse(retryFunction, Backoff.of());
     }
 
     /**
@@ -71,11 +71,11 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the class of the response status is the specified
+     * {@linkplain Backoff#of() default backoff} if the class of the response status is the specified
      * {@link HttpStatusClass}.
      */
     static <T extends Response> RetryRuleWithContent<T> onStatusClass(HttpStatusClass statusClass) {
-        return onStatusClass(statusClass, Backoff.ofDefault());
+        return onStatusClass(statusClass, Backoff.of());
     }
 
     /**
@@ -89,7 +89,7 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the class of the response status is the specified
+     * {@linkplain Backoff#of() default backoff} if the class of the response status is the specified
      * {@link HttpStatusClass}es.
      */
     static <T extends Response> RetryRuleWithContent<T> onStatusClass(HttpStatusClass... statusClasses) {
@@ -98,11 +98,11 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the class of the response status is the specified
+     * {@linkplain Backoff#of() default backoff} if the class of the response status is the specified
      * {@link HttpStatusClass}es.
      */
     static <T extends Response> RetryRuleWithContent<T> onStatusClass(Iterable<HttpStatusClass> statusClasses) {
-        return onStatusClass(statusClasses, Backoff.ofDefault());
+        return onStatusClass(statusClasses, Backoff.of());
     }
 
     /**
@@ -116,11 +116,11 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the class of the response status is
+     * {@linkplain Backoff#of() default backoff} if the class of the response status is
      * {@link HttpStatusClass#SERVER_ERROR}.
      */
     static <T extends Response> RetryRuleWithContent<T> onServerErrorStatus() {
-        return onServerErrorStatus(Backoff.ofDefault());
+        return onServerErrorStatus(Backoff.of());
     }
 
     /**
@@ -133,7 +133,7 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the response status is one of the specified
+     * {@linkplain Backoff#of() default backoff} if the response status is one of the specified
      * {@link HttpStatus}es.
      */
     static <T extends Response> RetryRuleWithContent<T> onStatus(HttpStatus... statuses) {
@@ -142,11 +142,11 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the response status is one of the specified
+     * {@linkplain Backoff#of() default backoff} if the response status is one of the specified
      * {@link HttpStatus}es.
      */
     static <T extends Response> RetryRuleWithContent<T> onStatus(Iterable<HttpStatus> statuses) {
-        return onStatus(statuses, Backoff.ofDefault());
+        return onStatus(statuses, Backoff.of());
     }
 
     /**
@@ -160,12 +160,12 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created a {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if the response status matches the specified
+     * {@linkplain Backoff#of() default backoff} if the response status matches the specified
      * {@code statusFilter}.
      */
     static <T extends Response> RetryRuleWithContent<T> onStatus(
             BiPredicate<? super ClientRequestContext, ? super HttpStatus> statusFilter) {
-        return onStatus(statusFilter, Backoff.ofDefault());
+        return onStatus(statusFilter, Backoff.of());
     }
 
     /**
@@ -179,11 +179,11 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created a {@link RetryRuleWithContent} that will retry with
-     * the {@linkplain Backoff#ofDefault() default backoff} if an {@link Exception} is raised and that is an
+     * the {@linkplain Backoff#of() default backoff} if an {@link Exception} is raised and that is an
      * instance of the specified {@code exception}.
      */
     static <T extends Response> RetryRuleWithContent<T> onException(Class<? extends Throwable> exception) {
-        return onException(exception, Backoff.ofDefault());
+        return onException(exception, Backoff.of());
     }
 
     /**
@@ -198,12 +198,12 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that will retry with the
-     * {@linkplain Backoff#ofDefault() default backoff} if an {@link Exception} is raised and the specified
+     * {@linkplain Backoff#of() default backoff} if an {@link Exception} is raised and the specified
      * {@code exceptionFilter} returns {@code true}.
      */
     static <T extends Response> RetryRuleWithContent<T> onException(
             BiPredicate<? super ClientRequestContext, ? super Throwable> exceptionFilter) {
-        return onException(exceptionFilter, Backoff.ofDefault());
+        return onException(exceptionFilter, Backoff.of());
     }
 
     /**
@@ -217,12 +217,12 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a newly created {@link RetryRuleWithContent} that retries with
-     * {@linkplain Backoff#ofDefault() default backoff} on any {@link Exception}.
+     * {@linkplain Backoff#of() default backoff} on any {@link Exception}.
      * Note that this rule should be used carefully because it retries regardless of
      * <a href="https://developer.mozilla.org/en-US/docs/Glossary/Idempotent">idempotency</a>.
      */
     static <T extends Response> RetryRuleWithContent<T> onException() {
-        return onException(Backoff.ofDefault());
+        return onException(Backoff.of());
     }
 
     /**
@@ -237,12 +237,12 @@ public interface RetryRuleWithContent<T extends Response> {
 
     /**
      * Returns a {@link RetryRuleWithContent} that retries with the
-     * {@linkplain Backoff#ofDefault() default backoff} on an {@link UnprocessedRequestException} which means
+     * {@linkplain Backoff#of() default backoff} on an {@link UnprocessedRequestException} which means
      * that the request has not been processed by the server. Therefore, you can safely retry the request
      * without worrying about the idempotency of the request.
      */
     static <T extends Response> RetryRuleWithContent<T> onUnprocessed() {
-        return onUnprocessed(Backoff.ofDefault());
+        return onUnprocessed(Backoff.of());
     }
 
     /**

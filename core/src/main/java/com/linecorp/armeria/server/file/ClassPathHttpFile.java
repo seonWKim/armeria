@@ -48,7 +48,7 @@ final class ClassPathHttpFile extends StreamingHttpFile<InputStream> {
                       @Nullable BiFunction<String, HttpFileAttributes, String> entityTagFunction,
                       HttpHeaders headers) {
         super(contentTypeAutoDetectionEnabled ?
-              MediaTypeResolver.ofDefault().guessFromPath(url.toString(), null) : null,
+              MediaTypeResolver.of().guessFromPath(url.toString(), null) : null,
               clock, dateEnabled, lastModifiedEnabled, entityTagFunction, headers);
         this.url = requireNonNull(url, "url");
     }

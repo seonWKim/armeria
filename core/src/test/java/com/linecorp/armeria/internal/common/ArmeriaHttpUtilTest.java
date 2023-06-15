@@ -190,7 +190,7 @@ class ArmeriaHttpUtilTest {
         final io.netty.handler.codec.http.HttpHeaders out =
                 new DefaultHttpHeaders();
 
-        toNettyHttp1ClientHeaders(in, out, Http1HeaderNaming.ofDefault());
+        toNettyHttp1ClientHeaders(in, out, Http1HeaderNaming.of());
         assertThat(out.getAll(HttpHeaderNames.COOKIE))
                 .containsExactly("a=b; c=d; e=f; g=h; i=j; k=l");
     }
@@ -393,7 +393,7 @@ class ArmeriaHttpUtilTest {
         final io.netty.handler.codec.http.HttpHeaders out =
                 new DefaultHttpHeaders();
 
-        toNettyHttp1ServerHeaders(in, out, Http1HeaderNaming.ofDefault(), true);
+        toNettyHttp1ServerHeaders(in, out, Http1HeaderNaming.of(), true);
         assertThat(out).isEqualTo(new DefaultHttpHeaders()
                                           .add(io.netty.handler.codec.http.HttpHeaderNames.TRAILER, "foo")
                                           .add(io.netty.handler.codec.http.HttpHeaderNames.HOST, "bar"));
@@ -579,7 +579,7 @@ class ArmeriaHttpUtilTest {
         final io.netty.handler.codec.http.HttpHeaders out =
                 new DefaultHttpHeaders();
 
-        toNettyHttp1ServerHeaders(in, out, Http1HeaderNaming.ofDefault(), false);
+        toNettyHttp1ServerHeaders(in, out, Http1HeaderNaming.of(), false);
         assertThat(out).isEqualTo(new DefaultHttpHeaders()
                                           .add(HttpHeaderNames.CONTENT_TYPE, MediaType.JSON.toString())
                                           .add(HttpHeaderNames.CONNECTION, "close"));

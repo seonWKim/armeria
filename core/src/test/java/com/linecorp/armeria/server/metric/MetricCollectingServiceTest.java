@@ -57,7 +57,7 @@ class MetricCollectingServiceTest {
               .build((ctx, req) -> HttpResponse.of(401));
 
             sb.meterRegistry(registry)
-              .decorator(MetricCollectingService.newDecorator(MeterIdPrefixFunction.ofDefault("foo")));
+              .decorator(MetricCollectingService.newDecorator(MeterIdPrefixFunction.of("foo")));
         }
     };
 

@@ -61,7 +61,7 @@ class RetryRuleWithContentBuilderTest {
                 .hasMessageContaining("Should set at least one retry rule");
 
         assertThatThrownBy(
-                () -> RetryRuleWithContent.builder().build(RetryDecision.retry(Backoff.ofDefault())))
+                () -> RetryRuleWithContent.builder().build(RetryDecision.retry(Backoff.of())))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Should set at least one retry rule");
 
@@ -84,7 +84,7 @@ class RetryRuleWithContentBuilderTest {
 
         assertBackoff(rule.shouldRetry(ctx1, response, null)).isSameAs(backoff);
         assertThatThrownBy(
-                () -> RetryRuleWithContent.builder().build(RetryDecision.retry(Backoff.ofDefault())))
+                () -> RetryRuleWithContent.builder().build(RetryDecision.retry(Backoff.of())))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Should set at least one retry rule");
     }
@@ -206,7 +206,7 @@ class RetryRuleWithContentBuilderTest {
     @ParameterizedTest
     void combineRetryWithContent(RetryRuleWithContent<HttpResponse> rule) {
         final HttpResponse response1 = HttpResponse.of("hello");
-        assertBackoff(rule.shouldRetry(ctx1, response1, null)).isSameAs(Backoff.ofDefault());
+        assertBackoff(rule.shouldRetry(ctx1, response1, null)).isSameAs(Backoff.of());
 
         final HttpResponse response2 = HttpResponse.of("world");
         ctx2.logBuilder().responseHeaders(ResponseHeaders.of(HttpStatus.INTERNAL_SERVER_ERROR));

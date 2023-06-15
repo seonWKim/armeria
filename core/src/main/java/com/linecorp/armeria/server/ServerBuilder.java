@@ -212,7 +212,7 @@ public final class ServerBuilder implements TlsSetters {
     private Duration gracefulShutdownQuietPeriod = DEFAULT_GRACEFUL_SHUTDOWN_QUIET_PERIOD;
     private Duration gracefulShutdownTimeout = DEFAULT_GRACEFUL_SHUTDOWN_TIMEOUT;
     private MeterRegistry meterRegistry = Flags.meterRegistry();
-    private ServerErrorHandler errorHandler = ServerErrorHandler.ofDefault();
+    private ServerErrorHandler errorHandler = ServerErrorHandler.of();
     private List<ClientAddressSource> clientAddressSources = ClientAddressSource.DEFAULT_SOURCES;
     private Predicate<? super InetAddress> clientAddressTrustedProxyFilter = address -> false;
     private Predicate<? super InetAddress> clientAddressFilter = address -> true;
@@ -220,7 +220,7 @@ public final class ServerBuilder implements TlsSetters {
             ProxiedAddresses::sourceAddress;
     private boolean enableServerHeader = true;
     private boolean enableDateHeader = true;
-    private Http1HeaderNaming http1HeaderNaming = Http1HeaderNaming.ofDefault();
+    private Http1HeaderNaming http1HeaderNaming = Http1HeaderNaming.of();
     @Nullable
     private DependencyInjector dependencyInjector;
     private Function<? super String, String> absoluteUriTransformer = Function.identity();
@@ -242,7 +242,7 @@ public final class ServerBuilder implements TlsSetters {
         virtualHostTemplate.annotatedServiceExtensions(ImmutableList.of(), ImmutableList.of(),
                                                        ImmutableList.of());
         virtualHostTemplate.blockingTaskExecutor(CommonPools.blockingTaskExecutor(), false);
-        virtualHostTemplate.successFunction(SuccessFunction.ofDefault());
+        virtualHostTemplate.successFunction(SuccessFunction.of());
         virtualHostTemplate.requestAutoAbortDelayMillis(0);
         virtualHostTemplate.multipartUploadsLocation(Flags.defaultMultipartUploadsLocation());
         virtualHostTemplate.requestIdGenerator(routingContext -> RequestId.random());
@@ -913,7 +913,7 @@ public final class ServerBuilder implements TlsSetters {
 
     /**
      * Sets a {@link SuccessFunction} that determines whether a request was handled successfully or not.
-     * If unspecified, {@link SuccessFunction#ofDefault()} is used.
+     * If unspecified, {@link SuccessFunction#of()} is used.
      */
     @UnstableApi
     public ServerBuilder successFunction(SuccessFunction successFunction) {
@@ -1592,9 +1592,9 @@ public final class ServerBuilder implements TlsSetters {
     @UnstableApi
     public ServerBuilder errorHandler(ServerErrorHandler errorHandler) {
         requireNonNull(errorHandler, "errorHandler");
-        if (errorHandler != ServerErrorHandler.ofDefault()) {
+        if (errorHandler != ServerErrorHandler.of()) {
             // Ensure that ServerErrorHandler never returns null by falling back to the default.
-            errorHandler = errorHandler.orElse(ServerErrorHandler.ofDefault());
+            errorHandler = errorHandler.orElse(ServerErrorHandler.of());
         }
         this.errorHandler = errorHandler;
         return this;

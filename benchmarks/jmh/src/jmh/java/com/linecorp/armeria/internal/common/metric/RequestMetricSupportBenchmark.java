@@ -30,7 +30,7 @@ import com.linecorp.armeria.server.ServiceRequestContext;
 
 public class RequestMetricSupportBenchmark {
 
-    private static final MeterIdPrefixFunction PREFIX_FUNC = MeterIdPrefixFunction.ofDefault("benchmark");
+    private static final MeterIdPrefixFunction PREFIX_FUNC = MeterIdPrefixFunction.of("benchmark");
     private static final RequestLog REQUEST_LOG;
 
     static {

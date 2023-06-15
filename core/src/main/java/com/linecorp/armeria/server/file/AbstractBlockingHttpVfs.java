@@ -60,7 +60,7 @@ public abstract class AbstractBlockingHttpVfs extends AbstractHttpVfs {
             Executor fileReadExecutor, String path, Clock clock,
             @Nullable String contentEncoding, HttpHeaders additionalHeaders) {
         return get(fileReadExecutor, path, clock, contentEncoding, additionalHeaders,
-                   MediaTypeResolver.ofDefault());
+                   MediaTypeResolver.of());
     }
 
     /**

@@ -58,7 +58,7 @@ public final class FileServiceBuilder {
     boolean canSetEntryCacheSpec = true;
     @Nullable
     HttpHeadersBuilder headers;
-    MediaTypeResolver mediaTypeResolver = MediaTypeResolver.ofDefault();
+    MediaTypeResolver mediaTypeResolver = MediaTypeResolver.of();
 
     FileServiceBuilder(HttpVfs vfs) {
         this.vfs = requireNonNull(vfs, "vfs");
@@ -230,7 +230,7 @@ public final class FileServiceBuilder {
 
     /**
      * Sets the {@link MediaTypeResolver} that determines a file's {@link MediaType} using its path.
-     * If not set, {@link MediaTypeResolver#ofDefault()} is used by default.
+     * If not set, {@link MediaTypeResolver#of()} is used by default.
      */
     public FileServiceBuilder mediaTypeResolver(MediaTypeResolver mediaTypeResolver) {
         this.mediaTypeResolver = requireNonNull(mediaTypeResolver, "mediaTypeResolver");
@@ -248,7 +248,7 @@ public final class FileServiceBuilder {
         return new FileService(new FileServiceConfig(
                 vfs, clock, entryCacheSpec, maxCacheEntrySizeBytes,
                 serveCompressedFiles, autoDecompress, autoIndex, buildHeaders(),
-                mediaTypeResolver.orElse(MediaTypeResolver.ofDefault())));
+                mediaTypeResolver.orElse(MediaTypeResolver.of())));
     }
 
     @Override

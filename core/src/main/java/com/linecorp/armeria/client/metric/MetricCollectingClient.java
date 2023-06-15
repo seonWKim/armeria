@@ -37,7 +37,7 @@ import io.micrometer.core.instrument.MeterRegistry;
  * <pre>{@code
  * WebClient client = WebClient
  *         .builder(uri)
- *         .decorator(MetricCollectingClient.newDecorator(MeterIdPrefixFunction.ofDefault("myClient")))
+ *         .decorator(MetricCollectingClient.newDecorator(MeterIdPrefixFunction.of("myClient")))
  *         .build();
  * }
  * </pre>

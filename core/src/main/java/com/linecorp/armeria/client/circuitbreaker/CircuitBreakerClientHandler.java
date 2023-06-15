@@ -31,7 +31,7 @@ import com.linecorp.armeria.common.circuitbreaker.CircuitBreakerCallback;
  * <pre>{@code
  * // using a pre-defined handler
  * CircuitBreakerClient.newDecorator(
- *         CircuitBreakerClientHandler.of(CircuitBreakerMapping.ofDefault()),
+ *         CircuitBreakerClientHandler.of(CircuitBreakerMapping.of()),
  *         CircuitBreakerRule.onException());
  *
  *

@@ -324,7 +324,7 @@ public final class Clients {
 
     private static ClientBuilderParams builderParams(Object client) {
         requireNonNull(client, "client");
-        final ClientBuilderParams params = ClientFactory.ofDefault().clientBuilderParams(client);
+        final ClientBuilderParams params = ClientFactory.of().clientBuilderParams(client);
         if (params == null) {
             throw new IllegalArgumentException("derivation not supported by: " + client.getClass().getName());
         }
@@ -355,7 +355,7 @@ public final class Clients {
      */
     @Nullable
     public static <T> T unwrap(Object client, Class<T> type) {
-        final ClientBuilderParams params = ClientFactory.ofDefault().clientBuilderParams(client);
+        final ClientBuilderParams params = ClientFactory.of().clientBuilderParams(client);
         if (params == null) {
             return null;
         }

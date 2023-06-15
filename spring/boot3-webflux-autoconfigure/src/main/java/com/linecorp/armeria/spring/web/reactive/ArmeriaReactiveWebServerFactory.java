@@ -322,7 +322,7 @@ public class ArmeriaReactiveWebServerFactory extends AbstractReactiveWebServerFa
 
     private MeterIdPrefixFunction meterIdPrefixFunctionOrDefault() {
         final MeterIdPrefixFunction f = findBean(MeterIdPrefixFunction.class);
-        return f != null ? f : MeterIdPrefixFunction.ofDefault("armeria.server");
+        return f != null ? f : MeterIdPrefixFunction.of("armeria.server");
     }
 
     @VisibleForTesting

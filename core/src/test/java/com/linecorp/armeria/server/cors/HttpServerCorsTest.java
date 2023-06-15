@@ -54,7 +54,7 @@ import com.linecorp.armeria.testing.junit4.server.ServerRule;
 
 public class HttpServerCorsTest {
 
-    private static final ClientFactory clientFactory = ClientFactory.ofDefault();
+    private static final ClientFactory clientFactory = ClientFactory.of();
 
     @CorsDecorators(value = {
             @CorsDecorator(origins = "http://example.com", exposedHeaders = "expose_header_1")

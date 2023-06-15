@@ -58,7 +58,7 @@ public class RoutersBenchmark {
         final Route route1 = Route.builder().exact("/grpc.package.Service/Method1").build();
         final Route route2 = Route.builder().exact("/grpc.package.Service/Method2").build();
         final Path multipartUploadsLocation = Flags.defaultMultipartUploadsLocation();
-        final ServiceErrorHandler serviceErrorHandler = ServerErrorHandler.ofDefault().asServiceErrorHandler();
+        final ServiceErrorHandler serviceErrorHandler = ServerErrorHandler.of().asServiceErrorHandler();
         SERVICES = ImmutableList.of(
                 new ServiceConfig(route1, route1,
                                   SERVICE, defaultLogName, defaultServiceName, defaultServiceNaming, 0, 0,
@@ -80,7 +80,7 @@ public class RoutersBenchmark {
         HOST = new VirtualHost(
                 "localhost", "localhost", 0, null, SERVICES, FALLBACK_SERVICE, RejectedRouteHandler.DISABLED,
                 unused -> NOPLogger.NOP_LOGGER, defaultServiceNaming, defaultLogName, 0, 0, false,
-                AccessLogWriter.disabled(), CommonPools.blockingTaskExecutor(), 0, SuccessFunction.ofDefault(),
+                AccessLogWriter.disabled(), CommonPools.blockingTaskExecutor(), 0, SuccessFunction.of(),
                 multipartUploadsLocation, ImmutableList.of(),
                 ctx -> RequestId.random());
         ROUTER = Routers.ofVirtualHost(HOST, SERVICES, RejectedRouteHandler.DISABLED);

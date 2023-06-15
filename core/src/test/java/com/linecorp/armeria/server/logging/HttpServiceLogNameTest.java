@@ -80,7 +80,7 @@ class HttpServiceLogNameTest {
                                                 .meterRegistry(registry)
                                                 .build())
                           .decorator(
-                                  MetricCollectingClient.newDecorator(MeterIdPrefixFunction.ofDefault("test")))
+                                  MetricCollectingClient.newDecorator(MeterIdPrefixFunction.of("test")))
                           .build();
     }
 

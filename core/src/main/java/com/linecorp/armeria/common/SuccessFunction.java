@@ -45,14 +45,14 @@ import com.linecorp.armeria.server.metric.MetricCollectingService;
  *         .builder()
  *         .successFunction((ctx, req) -> req.responseHeaders().status().code() == 200 ||
  *                                        req.responseHeaders().status().code() == 404)
- *         .decorator(MetricCollectingService.newDecorator(MeterIdPrefixFunction.ofDefault("myServer")))
+ *         .decorator(MetricCollectingService.newDecorator(MeterIdPrefixFunction.of("myServer")))
  *         .decorator(LoggingService.newDecorator()));
  *
  * WebClient client = WebClient
  *         .builder(uri)
  *         .successFunction((ctx, req) -> req.responseHeaders().status().code() == 200 ||
  *                                        req.responseHeaders().status().code() == 404)
- *         .decorator(MetricCollectingClient.newDecorator(MeterIdPrefixFunction.ofDefault("myClient")))
+ *         .decorator(MetricCollectingClient.newDecorator(MeterIdPrefixFunction.of("myClient")))
  *         .decorator(LoggingClient.newDecorator()))
  *         .build();
  * }
@@ -81,7 +81,7 @@ public interface SuccessFunction {
      * {@link RequestLog#responseCause()} is null, 100 &lt;= {@link HttpStatus} &lt; 400
      * and {@link RpcResponse#isCompletedExceptionally()} == {@code false}.
      */
-    static SuccessFunction ofDefault() {
+    static SuccessFunction of() {
         return (ctx, log) -> {
             if (log.responseCause() != null) {
                 return false;
