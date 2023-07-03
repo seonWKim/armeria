@@ -226,6 +226,7 @@ public final class ServerBuilder implements TlsSetters {
     private Function<? super String, String> absoluteUriTransformer = Function.identity();
     private long unhandledExceptionsReportIntervalMillis =
             Flags.defaultUnhandledExceptionsReportIntervalMillis();
+    private ServerMetrics serverMetrics = new DefaultServerMetrics();
     private final List<ShutdownSupport> shutdownSupports = new ArrayList<>();
 
     ServerBuilder() {
@@ -1954,6 +1955,16 @@ public final class ServerBuilder implements TlsSetters {
     }
 
     /**
+     * Sets the {@link ServerMetrics} which collects various server metrics.
+     * @param serverMetrics collects various server metrics
+     */
+    @UnstableApi
+    public ServerBuilder serverMetrics(ServerMetrics serverMetrics) {
+        this.serverMetrics = serverMetrics;
+        return this;
+    }
+
+    /**
      * Returns a newly-created {@link Server} based on the configuration properties set so far.
      */
     public Server build() {
@@ -2091,7 +2102,7 @@ public final class ServerBuilder implements TlsSetters {
                 clientAddressSources, clientAddressTrustedProxyFilter, clientAddressFilter, clientAddressMapper,
                 enableServerHeader, enableDateHeader, errorHandler, sslContexts,
                 http1HeaderNaming, dependencyInjector, absoluteUriTransformer,
-                unhandledExceptionsReportIntervalMillis, ImmutableList.copyOf(shutdownSupports));
+                unhandledExceptionsReportIntervalMillis, serverMetrics, ImmutableList.copyOf(shutdownSupports));
     }
 
     /**

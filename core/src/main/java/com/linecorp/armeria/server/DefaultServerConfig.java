@@ -112,6 +112,7 @@ final class DefaultServerConfig implements ServerConfig {
     private final DependencyInjector dependencyInjector;
     private final Function<String, String> absoluteUriTransformer;
     private final long unhandledExceptionsReportIntervalMillis;
+    private final ServerMetrics serverMetrics;
     private final List<ShutdownSupport> shutdownSupports;
 
     @Nullable
@@ -146,6 +147,7 @@ final class DefaultServerConfig implements ServerConfig {
             DependencyInjector dependencyInjector,
             Function<? super String, String> absoluteUriTransformer,
             long unhandledExceptionsReportIntervalMillis,
+            ServerMetrics serverMetrics,
             List<ShutdownSupport> shutdownSupports) {
         requireNonNull(ports, "ports");
         requireNonNull(defaultVirtualHost, "defaultVirtualHost");
@@ -262,6 +264,7 @@ final class DefaultServerConfig implements ServerConfig {
                 (Function<String, String>) requireNonNull(absoluteUriTransformer, "absoluteUriTransformer");
         this.absoluteUriTransformer = castAbsoluteUriTransformer;
         this.unhandledExceptionsReportIntervalMillis = unhandledExceptionsReportIntervalMillis;
+        this.serverMetrics = serverMetrics;
         this.shutdownSupports = ImmutableList.copyOf(requireNonNull(shutdownSupports, "shutdownSupports"));
     }
 
